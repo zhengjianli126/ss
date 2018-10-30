@@ -1,0 +1,68 @@
+{
+    "data": [{
+            "children": [
+                { "children": [], "isSelected": "", "menuId": "0002", "menuName": "操作员角色管理" },
+                { "children": [], "isSelected": "", "menuId": "0003", "menuName": "操作员信息管理" }
+            ],
+            "isSelected": "",
+            "menuId": "0001",
+            "menuName": "权限管理"
+        },
+        { "children": [], "isSelected": "", "menuId": "0004", "menuName": "用户管理" },
+        {
+            "children": [
+                { "children": [], "isSelected": "", "menuId": "0006", "menuName": "Banner设置管理" },
+                { "children": [], "isSelected": "", "menuId": "0007", "menuName": "标签管理" }
+            ],
+            "isSelected": "",
+            "menuId": "0005",
+            "menuName": "基础管理"
+        },
+        {
+            "children": [
+                { "children": [], "isSelected": "", "menuId": "0009", "menuName": "待审任务" },
+                { "children": [], "isSelected": "", "menuId": "0010", "menuName": "我的任务" },
+                { "children": [], "isSelected": "", "menuId": "0011", "menuName": "上架管理" },
+                { "children": [], "isSelected": "", "menuId": "0012", "menuName": "文章列表" },
+                { "children": [], "isSelected": "", "menuId": "0013", "menuName": "退稿列表" }
+            ],
+            "isSelected": "",
+            "menuId": "0008",
+            "menuName": "文章管理"
+        },
+        {
+            "children": [{ "children": [], "isSelected": "", "menuId": "0015", "menuName": "会议资讯" },
+                { "children": [], "isSelected": "", "menuId": "0016", "menuName": "往期回顾" }
+            ],
+            "isSelected": "",
+            "menuId": "0014",
+            "menuName": "会议管理"
+        },
+        {
+            "children": [
+                { "children": [], "isSelected": "", "menuId": "0018", "menuName": "问卷管理" },
+                { "children": [], "isSelected": "", "menuId": "0019", "menuName": "投票管理" },
+                { "children": [], "isSelected": "", "menuId": "0020", "menuName": "问答管理" },
+                { "children": [], "isSelected": "", "menuId": "0021", "menuName": "话题管理" },
+                { "children": [], "isSelected": "", "menuId": "0022", "menuName": "模板管理" },
+                { "children": [], "isSelected": "", "menuId": "0023", "menuName": "搜索管理" },
+                { "children": [], "isSelected": "", "menuId": "0024", "menuName": "许愿管理" }
+            ],
+            "isSelected": "",
+            "menuId": "0017",
+            "menuName": "综合管理"
+        },
+        {
+            "children": [
+                { "children": [], "isSelected": "", "menuId": "0026", "menuName": "科室管理" },
+                { "children": [], "isSelected": "", "menuId": "0027", "menuName": "我的科室" }
+            ],
+            "isSelected": "",
+            "menuId": "0025",
+            "menuName": "科室管理"
+        },
+        { "children": [], "isSelected": "", "menuId": "0028", "menuName": "商品管理" }
+    ],
+    "respCode": "0",
+    "respMsg": ""
+}
