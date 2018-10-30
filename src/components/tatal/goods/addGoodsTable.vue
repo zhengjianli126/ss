@@ -83,8 +83,8 @@ export default {
   
   methods: {
     handleAvatarSuccess(res, file) {
-            console.log(URL.createObjectURL(file.raw))
-                    this.ruleForm.goodgoodsImgsImg= URL.createObjectURL(file.raw);
+          
+                    this.ruleForm.goodgoodsImgsImg= res.respMsg;
                 },
     beforeAvatarUpload(file) {
                     console.log(file)
