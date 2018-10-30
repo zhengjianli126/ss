@@ -6,9 +6,8 @@
         <el-form-item label="问题标题" prop="questionTitle">
           <el-input v-model="form.questionTitle"></el-input>
         </el-form-item>
-        <el-form-item label="问题内容" prop="questionContent" :class="{'disabled': !currentData.editable}">
-          <wangEditor :init="editorInit" v-model="form.questionContent"></wangEditor>
-        
+        <el-form-item label="问题内容" prop="questionContent">
+          <wangEditor  :editorContent="form.questionContent"></wangEditor>
         </el-form-item>
         <el-form-item label="提问标签">
           <TagShow closable

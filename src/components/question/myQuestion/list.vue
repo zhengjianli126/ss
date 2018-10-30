@@ -12,14 +12,14 @@
                         end-placeholder="结束日期">
         </el-date-picker>
       </el-form-item>
-      <el-form-item prop="isSolve" label="状态">
-        <el-select v-model="form.isSolve" placeholder="请选择">
+      <el-form-item prop="nowlevel" label="状态">
+        <el-select v-model="form.nowlevel" placeholder="请选择">
           <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
           </el-option>
         </el-select>
       </el-form-item>
-      <el-form-item prop="nowlevel" label="审核状态">
-        <el-select v-model="form.nowlevel" placeholder="请选择">
+      <el-form-item prop="isSolve" label="审核状态">
+        <el-select v-model="form.isSolve" placeholder="请选择">
           <el-option v-for="item in examineOptions" :key="item.value" :label="item.label" :value="item.value">
           </el-option>
         </el-select>

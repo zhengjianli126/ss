@@ -131,15 +131,15 @@ export default {
                            key:"不限"
                            }, {
                            id:'02',
-                           value:'overlookNum',
+                           value:'overlook_num',
                            key:"浏览量"
                            }, {
                            id:'03',
-                           value:'supportNum',
+                           value:'support_num',
                            key:"点赞数"
                            }, {
                            id:'04',
-                           value:'commentNum:',
+                           value:'comment_num:',
                            key:"评论数"
                            }
                    ]

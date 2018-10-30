@@ -14,8 +14,7 @@
             <template slot-scope="scope">{{ scope.row.articleInfos[0].articleTitle }}</template>
         </el-table-column>
         <el-table-column
-            label="标签"
-            width="160">
+            label="标签">
               <template slot-scope="scope">
                 <div class="tags">
                     <el-tag v-for="(item, index) in scope.row.articleInfos[0].articleTags"  :key="index">{{item}}</el-tag>

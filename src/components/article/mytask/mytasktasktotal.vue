@@ -1,39 +1,42 @@
 <template>
-    <div class="tasktotalWarp">
-        <h4>文章审核</h4>
-        <el-tabs v-model="activeName2" type="card" class="main" @tab-click="handleClick">
-            <el-tab-pane  label="原稿" name="0" >
-                <Check :data="data" ref="check" :info="info0" disabled></Check>
-            </el-tab-pane>
-            <el-tab-pane label="专家" name="1" :disabled="zj">
-                <Check :data="data" ref="check"  :info="info1" ></Check>
-            </el-tab-pane>
-            <el-tab-pane label="编辑" name="2" :disabled="bj">
-                <Check :data="data" ref="check"  :info="info2"></Check>
-            </el-tab-pane>
-            <el-tab-pane label="主编" name="3" :disabled="zb">
-                <Check :data="data" ref="check"  :info="info3" ></Check>
-            </el-tab-pane>
-        </el-tabs>
-        <div class="btn">
-            <el-button @click="close">关闭</el-button>
-            <el-button @click="OperateCheckArticle(0)">保存</el-button>
-            <el-button>预览</el-button>
-            <el-button @click="dialogFormVisible = true">退稿</el-button>
-            <el-button @click="OperateCheckArticle(1)">通过</el-button>
-        </div>
-        <el-dialog title="退稿" :visible.sync="dialogFormVisible"><!--弹出框-->
+<div class="tasktotalWarp">
+    <h4>文章审核</h4>
+    <el-tabs v-model="activeName2" type="card" class="main" @tab-click="handleClick">
+        <el-tab-pane label="原稿" name="0">
+            <Check :data="data" ref="check" :info="info" disabled></Check>
+        </el-tab-pane>
+        <el-tab-pane label="专家" name="1" :disabled="zj">
+          
+            <Check :data="data" ref="check" :info="info"></Check>
+        </el-tab-pane>
+        <el-tab-pane label="编辑" name="2" :disabled="bj">
+            <Check :data="data" ref="check" :info="info"></Check>
+        </el-tab-pane>
+        <el-tab-pane label="主编" name="3" :disabled="zb">
+            <Check :data="data" ref="check" :info="info"></Check>
+           
+        </el-tab-pane>
+    </el-tabs>
+    <div class="btn">
+        <el-button @click="close">关闭</el-button>
+        <el-button @click="OperateCheckArticle(0)">保存</el-button>
+        <el-button>预览</el-button>
+        <el-button @click="dialogFormVisible = true">退稿</el-button>
+        <el-button @click="OperateCheckArticle(1)">通过</el-button>
+    </div>
+    <el-dialog title="退稿" :visible.sync="dialogFormVisible">
+        <!--弹出框-->
         <div>
-            <el-form :model="ruleForm"  ref="ruleForm" label-width="100px" class="demo-ruleForm">
-                <el-form-item label="退稿至" >
+            <el-form :model="ruleForm" ref="ruleForm" label-width="100px" class="demo-ruleForm">
+                <el-form-item label="退稿至">
                     <el-select v-model="ruleForm.messageType" placeholder="请选择">
-                    <el-option v-if='!zb' label="主编" value="3"></el-option>
-                    <el-option label="投稿" value="0"></el-option>
-                    <el-option v-if='!bj' label="编辑" value="2"></el-option>
-                    <el-option v-if='!zj' label="专家" value="1"></el-option>
+                        <el-option v-if='!zb' label="主编" value="3"></el-option>
+                        <el-option label="投稿" value="0"></el-option>
+                        <el-option v-if='!bj' label="编辑" value="2"></el-option>
+                        <el-option v-if='!zj' label="专家" value="1"></el-option>
                     </el-select>
                 </el-form-item>
-                <el-form-item label="退稿原因"  label-width="100px">
+                <el-form-item label="退稿原因" label-width="100px">
                     <el-input type="textarea" v-model="ruleForm.messageInfo"></el-input>
                 </el-form-item>
             </el-form>
@@ -42,131 +45,138 @@
             <el-button @click="dialogFormVisible = false">取消</el-button>
             <el-button @click="OperateCheckArticle(2)">确定</el-button>
         </div>
-        </el-dialog>
+    </el-dialog>
 </div>
 </template>
 <script>
-import { getArticleInfo,operateCheckArticle } from '../../../service/getData.js' //引入接口
-import Check from './check.vue'  //引入组件
+import {
+    getArticleInfo,
+    operateCheckArticle
+} from '../../../service/getData.js' //引入接口
+import Check from './check.vue' //引入组件
 export default {
 
-    data(){
-        return{
-            zj:true,
-          bj:true,
-          zb:true,
-          data:{},
-          activeName2: '0',
-          uploadUrl:'',
-          index:0,
-          tags:[],
-           info0:{},
-         info1:{},
-         info2:{},
-         info3:{},
-          backOperateAccountRole:'',
-          failreason:'',
-          dialogFormVisible:false,
-          ruleForm:{
-            messageType:'',
-            messageInfo:""
-          }
+    data() {
+        return {
+            zj: true,
+            bj: true,
+            zb: true,
+            data: {},
+            activeName2: '0',
+            uploadUrl: '',
+            index: 0,
+            tags: [],
+           info:'',
+            backOperateAccountRole: '',
+            failreason: '',
+            dialogFormVisible: false,
+            ruleForm: {
+                messageType: '',
+                messageInfo: ""
+            }
         }
     },
-    components:{
+    components: {
         Check
     },
-    methods:{
-         getInfo(str){
+    methods: {
+        getInfo(str) {
             getArticleInfo(str).then((res) => {
-                   
-                    var res = JSON.parse(res); 
-                    console.log(res)
-                    this.data=res.data
-                    this.show( this.data)
-                    console.log(this.data)
+
+                var res = JSON.parse(res);
+                console.log(res)
+                this.data = res.data
+                this.show(this.data)
+                console.log(this.data)
             }).catch(err => {
-                        alert('error'+err);
+                alert('error' + err);
             })
         },
-         show(str){
-          this.index=JSON.parse(localStorage['users']).admin.adminEditIdentity
-          this.info=str.articleInfos[this.index]
-          console.log(this.info)
-          this.activeName2=String(this.index)
-          console.log(str)
-           switch(parseInt(str.articleInfos.length)){
-                        case 1:
-                            break;
-                        case 2:
-                           this.zj= false
-                            break;
-                        case 3:
-                            this.zj= false
-                            this.bj= false
-                            break;
-                         default:
-                            this.zj= false
-                           this.bj= false
-                           this.zb= false
-              }
-      },
-        close(){
+        show(str) {
+            this.index = JSON.parse(localStorage['users']).admin.adminEditIdentity
+            this.info = str.articleInfos[this.index-1]
+            console.log(this.info)
+            this.activeName2 = String(this.index-1)
+            // console.log(str)
+            switch (parseInt(str.articleInfos.length)) {
+                case 1:
+                    break;
+                case 2:
+                    this.zj = false
+                    break;
+                case 3:
+                    this.zj = false
+                    this.bj = false
+                    break;
+                default:
+                    this.zj = false
+                    this.bj = false
+                    this.zb = false
+            }
+        },
+        close() {
             this.$router.go(-1)
         },
         handleClick(tab) {
-           this.info=this.data.articleInfos[tab.index]
+            this.info = this.data.articleInfos[tab.index]
             console.log(this.info)
             // if(tab.index!==this.data.articleInfos.length-1){
             //      this.$refs.check.chengeDisabled()
             //      console.log('====================++++++++++')
             // } 
             this.$router.replace({
-                	 path: "/mytask/mytasktasktotal",
-                     name: "mytasktasktotal",
-                })
+                path: "/mytask/mytasktasktotal",
+                name: "mytasktasktotal",
+            })
         },
-         OperateCheckArticle(x){
-                this.dialogFormVisible=false
-             this.$refs.check.operateCheckArticle(x,this.index,this.ruleForm.messageType,this.ruleForm.messageInfo);
-          
-      },
-        
-    },
-    created(){
-          this.index=JSON.parse(localStorage['users']).admin.adminEditIdentity
-          console.log(this.index)
-           this.activeName2=String(this.index)
-            this.getInfo(this.$route.query)
-       
-    },
-    computed:{
+        OperateCheckArticle(x) {
 
-     }
+            if (x=='2'&&this.ruleForm.messageType == '') {
+                this.$message({
+                    showClose: true,
+                    message: '请选择投稿人',
+                    type: 'warning'
+                });
+                return
+            }
+            this.dialogFormVisible = false
+            this.$refs.check.operateCheckArticle(x, this.index, this.ruleForm.messageType, this.ruleForm.messageInfo);
+        },
+
+    },
+    created() {
+        this.index = JSON.parse(localStorage['users']).admin.adminEditIdentity
+        console.log(this.index)
+        this.activeName2 = String(this.index)
+        this.getInfo(this.$route.query)
+
+    },
+    computed: {
+
+    }
 }
 </script>
-<style lang="less" > 
-.tasktotalWarp{
-   
-    margin-bottom: 120px;
-    h4{
-     height: 40px;
-     background: #666;
-     color:#fff;
-     line-height: 40px;
-     padding-left: 30px;
+<style lang="less">
+ .tasktotalWarp {
+     margin-bottom: 120px;
+     h4 {
+         height: 40px;
+         background: #666;
+         color: #fff;
+         line-height: 40px;
+         padding-left: 30px;
+     }
+     .btn {
+         // position: fixed;
+         // bottom:30px;
+         // left:220px;
+         // right:0;
+         // width:100%;
+         // background: white;
+         // text-align:left;
+         // z-index:10000;
+         margin-left: 50px;
+     }
  }
-  .btn{
-    // position: fixed;
-    // bottom:30px;
-    // left:220px;
-    // right:0;
-    // width:100%;
-    // background: white;
-    // text-align:left;
-    // z-index:10000;
-    margin-left:50px;
-  } 
-}
 </style>
 

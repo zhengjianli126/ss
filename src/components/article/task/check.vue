@@ -21,8 +21,7 @@
                 </div>
             </el-form-item>
             <el-form-item label="文章内容:" prop="articleContent" >
-                 <wangEditor v-model="info.articleContent"></wangEditor>
-                  
+                 <wangEditor :editorContent="info.articleContent"></wangEditor>
              </el-form-item>
              <el-form-item label="封面图:" prop="articleImgPath">
                <el-upload
@@ -132,8 +131,6 @@ export default {
       },
      operateCheckArticle(x,y,a,b){
          var params = {}
-         console.log("+++++++")
-         console.log(this.data)
          let tags= this.info.articleTags.join(',')
           let user=JSON.parse(localStorage['users'])
           

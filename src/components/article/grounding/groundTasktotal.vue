@@ -84,13 +84,13 @@ export default {
      padding-left: 30px;
  }
   .btn{
-      padding:40px 0 0 500px ;
-    border: #dcdfe6 solid 1px;
+    //   padding:40px 0 0 500px ;
+    // border: #dcdfe6 solid 1px;
 
     position: fixed;
     bottom: 0px;
-    width: 877px;
-    height: 120px;
+    // width: 877px;
+    // height: 120px;
     
     background: #ffffff;
     

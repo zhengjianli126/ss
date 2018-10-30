@@ -94,7 +94,6 @@ export default {
             console.log(this.info)
             if(tab.index!==this.data.articleInfos.length-1){
                  this.$refs.check.chengeDisabled()
-                 console.log('====================++++++++++')
             } 
             this.$router.replace({
                 	 path: '/tasktotal',
@@ -102,15 +101,22 @@ export default {
                 })
         },
          OperateCheckArticle(x){
-             console.log(x)
+               if (x=='2'&&this.ruleForm.messageType == '') {
+                this.$message({
+                    showClose: true,
+                    message: '请选择投稿人',
+                    type: 'warning'
+                });
+                return
+            }
                 this.dialogFormVisible=false
              this.$refs.check.operateCheckArticle(x,this.index,this.ruleForm.messageType,this.ruleForm.messageInfo);
            this.$router.push({name:"Task",  query:{}})
       },
       show(str){
           this.index=JSON.parse(localStorage['users']).admin.adminEditIdentity
-          this.info=str.articleInfos[this.index]
-          this.activeName2=String(this.index)
+          this.info=str.articleInfos[this.index-1]
+          this.activeName2=String(this.index-1)
           console.log(str)
            switch(parseInt(str.articleInfos.length)){
                         case 1:

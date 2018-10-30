@@ -156,7 +156,7 @@
 							var  res = JSON.parse(res);
 								if(res.respCode==='0'){
 									this.$router.push('/');
-									 this.$message('请使用新密码重新登录');
+									 this.$message('请使用新密码重新登录！');
 								}
 						}).catch(err => {
 				 			alert('error'+err);

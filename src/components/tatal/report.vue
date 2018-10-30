@@ -1,62 +1,63 @@
 <template>
-    <div class="wish">
-        <heads></heads>
-        <div class="main">
-            <el-form :inline="true" :model="headData" :rules="rules" label-position="right" label-width="80px">
-                <el-form-item label-width="100px" label="被举报目标" size="small" style="width: 400px;">
-                    <el-input v-model="headData.reportTitle" style="width: 250px;"></el-input>
-                </el-form-item>
+<div class="wish">
+    <heads></heads>
+    <div class="main">
+        <el-form :inline="true" :model="headData" :rules="rules" label-position="right" label-width="80px">
+            <el-form-item label-width="100px" label="被举报目标" size="small" style="width: 400px;">
+                <el-input v-model="headData.reportTitle" style="width: 250px;"></el-input>
+            </el-form-item>
 
-                <el-form-item label-width="100px" label="被举报内容" size="small" style="width: 400px;">
-                    <el-input v-model="headData.content" style="width: 250px;"></el-input>
-                </el-form-item>
+            <el-form-item label-width="100px" label="被举报内容" size="small" style="width: 400px;">
+                <el-input v-model="headData.content" style="width: 250px;"></el-input>
+            </el-form-item>
 
-                <el-form-item label-width="100px" label="举报时间" size="small" style="width: 400px;">
-                    <el-date-picker type="daterange" range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期" value-format="yyyy-MM-dd HH:mm:ss" v-model="headData.time" style="width: 250px;"></el-date-picker>
-                </el-form-item>
+            <el-form-item label-width="100px" label="举报时间" size="small" style="width: 400px;">
+                <el-date-picker type="daterange" range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期" value-format="yyyy-MM-dd HH:mm:ss" v-model="headData.time" style="width: 250px;"></el-date-picker>
+            </el-form-item>
 
-                <el-form-item label-width="100px" label="联系电话" size="small" style="width: 400px;" prop="phoneNum">
-                    <el-input v-model="headData.phoneNum" style="width: 250px;"></el-input>
-                </el-form-item>
+            <el-form-item label-width="100px" label="联系电话" size="small" style="width: 400px;" prop="phoneNum">
+                <el-input v-model="headData.phoneNum" style="width: 250px;"></el-input>
+            </el-form-item>
 
-                <el-form-item label-width="100px" label="状态" size="small" style="width: 400px;">
-                    <el-select v-model="headData.status.value" placeholder="请选择" style="width: 250px;">
-                        <el-option style="display:block;" v-for="(item, index) in headData.status.option" :label="item.label" :value="item.value" :key="index"></el-option>
-                    </el-select>
-                </el-form-item>
+            <el-form-item label-width="100px" label="状态" size="small" style="width: 400px;">
+                <el-select v-model="headData.status.value" placeholder="请选择" style="width: 250px;">
+                    <el-option style="display:block;" v-for="(item, index) in headData.status.option" :label="item.label" :value="item.value" :key="index"></el-option>
+                </el-select>
+            </el-form-item>
 
-                <el-form-item size="small">
-                    <el-button icon="el-icon-search" :loading="isLoading" type="primary" size="small" @click="searchAction()">查询</el-button>
-                </el-form-item>
-            </el-form>
+            <el-form-item size="small">
+                <el-button icon="el-icon-search" :loading="isLoading" type="primary" size="small" @click="searchAction()">查询</el-button>
+            </el-form-item>
+        </el-form>
 
-            <div class="table">
-                <div class="btn_box">
-                    <el-button plain @click="deleteReportHandle()">删除</el-button>
-                    <el-button plain @click="setReportSafeHandle()">未违规</el-button>
-                </div>
+        <div class="table">
+            <div class="btn_box">
+                <el-button plain @click="deleteReportHandle()">删除</el-button>
+                <el-button plain @click="setReportSafeHandle()">未违规</el-button>
+            </div>
 
-                <div class="tableListWrap" v-loading="isLoading">
-                    <el-table ref="multipleTable" :data="data" tooltip-effect="dark" border stripe :header-cell-style="{background:'#f4f4f4',color:'#666'}" style="width: 1156px" @selection-change="selectionChange">
-                        <el-table-column width="48" align="center" type="selection" :selectable="canSelect"></el-table-column>
-                        <el-table-column prop="reportTitle" label="被举报目标" width="138" align="center"></el-table-column>
-                        <el-table-column prop="content" label="被举报内容" width="138" align="center"></el-table-column>
-                        <el-table-column label="举报人" width="138" align="center">
-                            <template slot-scope="scope">
+            <div class="tableListWrap" v-loading="isLoading">
+                <el-table ref="multipleTable" :data="data" tooltip-effect="dark" border stripe :header-cell-style="{background:'#f4f4f4',color:'#666'}" style="width: 1156px" @selection-change="selectionChange">
+                    <el-table-column width="48" align="center" type="selection" :selectable="canSelect"></el-table-column>
+                    <el-table-column prop="reportTitle" label="被举报目标" width="138" align="center"></el-table-column>
+                    <el-table-column prop="content" label="被举报内容" width="138" align="center"></el-table-column>
+                    <el-table-column label="举报人" width="138" align="center">
+                        <template slot-scope="scope">
                                 <span>{{scope.row.userRealName || scope.row.userName}}</span>
-                            </template>
+</template>
                         </el-table-column>
                         <el-table-column prop="phoneNum" label="联系电话" width="180" align="center"></el-table-column>
                         <el-table-column prop="ctime" label="举报时间" width="180" align="center"></el-table-column>
                         <el-table-column label="状态" width="138" align="center">
-                            <template slot-scope="scope">
-                                <span :class="{'green': scope.row.status === 1 || scope.row.status === 2, 'red': scope.row.status === 0}">{{ scope.row.statusString }}</span>
-                            </template>
+<template slot-scope="scope">
+<span :class="{'green': scope.row.status === 1 || scope.row.status === 2, 'red': scope.row.status === 0}">{{ scope.row.statusString }}</span>
+</template>
                         </el-table-column>
                         <el-table-column label="操作" width="165" align="center">
-                            <template slot-scope="scope">
-                                <el-button @click="detail(scope.row)" type="text" size="small">详情</el-button>
-                            </template>
+<template slot-scope="scope">
+<el-button @click="detail(scope.row)" type="text" size="small">
+    详情</el-button>
+</template>
                         </el-table-column>
                     </el-table>
 
@@ -113,7 +114,11 @@
 </template>
 <script>
 import Heads from '../common/head.vue';
-import { queryReport, deleteReport, setReportSafe } from '@/service/getData';
+import {
+    queryReport,
+    deleteReport,
+    setReportSafe
+} from '@/service/getData';
 export default {
     data() {
         var checkPhoneNum = (rule, value, callback) => {
@@ -136,8 +141,7 @@ export default {
                 time: '',
                 status: {
                     value: '',
-                    option: [
-                        {
+                    option: [{
                             label: '全部',
                             value: ''
                         },
@@ -157,9 +161,10 @@ export default {
                 }
             },
             rules: {
-                phoneNum: [
-                    { validator: checkPhoneNum, trigger: 'blur' }
-                ]
+                phoneNum: [{
+                    validator: checkPhoneNum,
+                    trigger: 'blur'
+                }]
             },
             data: [],
             selectedData: [],
@@ -171,7 +176,9 @@ export default {
             detailData: {}
         }
     },
-    components: { Heads },
+    components: {
+        Heads
+    },
     methods: {
         //  查询举报列表
         searchAction() {
@@ -233,20 +240,44 @@ export default {
         //  删除
         deleteReportHandle(params) {
             if (!this.selectedData.length) {
+                   this.$message({
+                            type: 'warning',
+                            message: '请选择数据!'
+                        });
                 return false;
             }
             this.isLoading = true;
-            let data = {
-                reportIds: this.selectedData.join(',')
-            };
-            deleteReport(data).then( res => {
-                this.isLoading = false;
-                console.log(res);
-                res = JSON.parse(res);
-                if (res.respCode === '0') {
-                    this.searchAction();
-                }
+            this.$confirm('是否确认删除?', '提示', {
+                confirmButtonText: '确定',
+                cancelButtonText: '取消',
+                type: 'warning'
+            }).then(() => {
+                let data = {
+                    reportIds: this.selectedData.join(',')
+                };
+                deleteReport(data).then(res => {
+                    this.isLoading = false;
+                    res = JSON.parse(res);
+                    if (res.respCode === '0') {
+                        this.$message({
+                            type: 'success',
+                            message: '删除成功!'
+                        });
+                        this.searchAction();
+                    }else{
+                         this.$message({
+                    type: 'info',
+                    message: '已取消删除'
+                });
+                    }
+                });
+            }).catch(() => {
+                this.$message({
+                    type: 'info',
+                    message: '已取消删除'
+                });
             });
+
         },
 
         //  设为未违规
@@ -258,7 +289,7 @@ export default {
             let data = {
                 reportIds: this.selectedData.join(',')
             };
-            setReportSafe(data).then( res => {
+            setReportSafe(data).then(res => {
                 console.log(res);
                 res = JSON.parse(res);
                 if (res.respCode === '0') {
@@ -272,7 +303,10 @@ export default {
             this.showDetail = true;
             this.detailData = params;
         }
-    }
+    },
+    mounted() {
+        this.searchAction()
+    },
 }
 </script>
 <style lang="less">

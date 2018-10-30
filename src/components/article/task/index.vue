@@ -181,7 +181,7 @@ export default {
   position: relative;
 }
 .tinymce-container>>>.mce-fullscreen {
-  z-index: 10000;
+  /* z-index: 10000; */
 }
 .tinymce-textarea {
   visibility: hidden;
@@ -197,6 +197,7 @@ export default {
   z-index: 10000;
   position: fixed;
 }
+
 .editor-upload-btn {
   display: inline-block;
 }

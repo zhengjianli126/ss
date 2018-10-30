@@ -4,15 +4,16 @@
         <el-button size="small" style="position:absolute;left:680px;top:10px;"  v-on:click="backTextIndent">首行回退</el-button>
         <el-button size="small" style="position:absolute;left:780px;top:10px;"  v-on:click="previewBtn(true)">预览</el-button>
         <div ref="editor" class="editorArea" style="text-align:left;"></div>
-        <!--<div style="border:1px solid #ccc;height:667px;width:375px;z-index:10000;margin-top:30px;" class="w-e-text-container">
+        <!--<div style="border:1px solid #ccc;height:667px;width:375px;margin-top:30px;" class="w-e-text-container">
             <div contenteditable="false" style="width:100%; height:100%;" class="w-e-text" id="text-elem9115387878892687">
             <div v-html="editorContent"></div>
             </div>
         </div>-->
         <div class="previewArea" v-if="previewShow">
+          
             <div class="previewBg w-e-text-container"  :style="{ backgroundImage:'url(' + require('../../assets/yulan.png') + ')'}">
                 <div class="previewCon w-e-text"  contenteditable="false" id="text-elem9115387878892687">
-                    <div v-html="editorContent"></div>
+                    <div></div>
                 </div>
             </div>
             <img class="previewClose" @click="previewBtn(false)" src="../../assets/close.png" />
@@ -23,10 +24,11 @@
     import E from 'wangeditor'
     import { uploadAttach } from '../../service/getData.js'
 	export default{
+        props:['editorContent'],
 		data () {
 			return {
                 index:0,
-                editorContent: '',
+                // editorContent: '',
                 editor:{},
                 previewShow:false
 			}
@@ -74,14 +76,14 @@
             // 隐藏“网络图片”tab
             this.editor.customConfig.showLinkImg = false
             this.editor.create();
+            console.log(1,this.editorContent)
+            this.editor.txt.html(this.editorContent)
+            this.$forceUpdate()
 		},
 		components : {
 			
 		},
 		methods : {
-            getContent(){
-                alert(this.editor.txt.html())
-            },
 			setTextIndent: function () {
                 this.editor.selection.getSelectionContainerElem()[0].parentNode.style.textIndent='2em';
                 this.editor.selection.getSelectionContainerElem()[0].style.textIndent='2em';
@@ -152,7 +154,7 @@
             top:0;
             width:100%;
             height:100%;
-            z-index:1002;
+            z-index:99;
             background:rgba(0,0,0,0.3);
             .previewClose{
                 position: absolute;

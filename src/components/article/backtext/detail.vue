@@ -63,29 +63,14 @@ export default {
          
         nowlevel(){
            switch(parseInt(this.data.nowlevel)){
-                case 0:
-                   return  '待专家审核'
+               case 0:
+                    return '退稿至投稿人'
                     break;
                 case 1:
-                      return  '专家审核中'
-                    break;
-                case 2:
-                      return '待编辑审核'
-                    break;
-                case 3:
-                     return  '编辑审核中'
-                    break;
-                case 4:
-                   return  '待主编审核'
-                    break;
-                case 5:
-                     return  '主编审核中'
-                    break;
-                case 6:
-                    return  '审核通过'
-                    break;
+                    return '退稿至专家'
+                    break;            
                 default:
-                    return  '已退稿'
+                    return '退稿至编辑'
             } 
         }
 

@@ -5,18 +5,17 @@
                 :label="item.name"  
                 v-for="item in list" :key="item.id"           
             >
-              <el-date-picker
+              <el-date-picker clearable
                         v-model='item.names.value'
                                 v-if="item.type==='hidden'?'true':''"
                                 type="datetime"
                                 value-format='yyyy-MM-dd HH:mm:ss'
                                 placeholder="选择日期时间">
                         </el-date-picker>
-                    
-                    <el-select class="comSelect" v-if="!item.flag" v-model='item.names.value'>
+                    <el-select class="comSelect" v-if="!item.flag" v-model='item.names.value' clearable>
                         <el-option style="display:block;" v-for="x in item.option" :label="x.key"  :value="x.value" :key="x.id" ></el-option>
                     </el-select>
-                    <el-input class="comInput" :type="item.type" :placeholder="item.plaseholder" v-model='item.names.value' v-if="item.flag"/>
+                    <el-input  class="comInput" :type="item.type" :placeholder="item.plaseholder" v-model='item.names.value' v-if="item.flag"/>
             </el-form-item>
             <el-form-item>
                 <el-button icon="el-icon-search" :loading="isLoading" type="primary" size="small" @click="searchAction(1)">查询</el-button>
